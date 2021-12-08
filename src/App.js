@@ -18,7 +18,7 @@ axios.defaults.headers.common["Authorization"] =
   "Bearer d406c9ac-c9d1-4a36-810f-593bf76a4a36"
 // const pid = "47836e8c-10bf-40d8-92e1-656c3c440e11" // 1-4da66009-d068-4518-89f0-f9fdcfd29100 match
 
-const socket = io("https://mysterious-lake-13256.herokuapp.com/")
+const socket = io("https://faceit-widget-server.herokuapp.com/")
 
 socket.on("connect", () => {
   console.log("Connect to the server.")
