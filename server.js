@@ -6,6 +6,12 @@ const app = express()
 app.use(express.static(__dirname))
 app.use(express.static(path.resolve(__dirname, "build")))
 
+app.use(function (req, res, next) {
+  req.header("Access-Control-Allow-Origin", "*")
+  req.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE")
+  next()
+})
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"))
 })
