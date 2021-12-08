@@ -31,7 +31,7 @@
 }
 
 .rank-image {
-  opacity: 0%;
+  opacity: 0;
   display: block;
   margin: auto;
   margin-top: 50px;
@@ -48,17 +48,17 @@
 
 @keyframes rank-img-up {
   0% {
-    opacity: 0%;
+    opacity: 0;
     transform: scale(0.8);
   }
   100% {
-    opacity: 100%;
+    opacity: 1;
     transform: scale(1);
   }
 }
 
 .countup-num {
-  opacity: 0%;
+  opacity: 0;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 60px;
   color: white;
@@ -74,27 +74,27 @@
 @keyframes elo-up {
   0% {
     transform: translateY(100px);
-    opacity: 0%;
+    opacity: 0;
   }
   100% {
     transform: translateY(0);
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
 .diff-num {
-  opacity: 0%;
+  opacity: 0;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 30px;
 }
 .diff-num-neg {
-  opacity: 0%;
+  opacity: 0;
   color: #b92727;
   text-shadow: 0 0 15px #b92727, 0 0 10px #b92727;
 }
 
 .diff-num-pos {
-  opacity: 0%;
+  opacity: 0;
   color: #258901;
   text-shadow: 0 0 15px #258901, 0 0 10px #258901;
 }
@@ -109,11 +109,11 @@
 @keyframes diff-up {
   0% {
     transform: translateY(100px);
-    opacity: 0%;
+    opacity: 0;
   }
   50% {
     transform: translateY(0);
-    opacity: 100%;
+    opacity: 1;
   }
   100% {
     transform: translateY(-50px);
@@ -127,7 +127,7 @@
   margin-left: 150px;
   margin-right: 150px;
   margin-top: 30px;
-  opacity: 0%;
+  opacity: 0;
   color: white;
   font-size: 50px;
 }
@@ -165,10 +165,10 @@
 @keyframes stats-up {
   0% {
     transform: translateY(100px);
-    opacity: 0%;
+    opacity: 0;
   }
   100% {
     transform: translateY(0);
-    opacity: 100%;
+    opacity: 1;
   }
 }
