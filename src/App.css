@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "Franklin";
+  src: local("Franklin"), url(./fonts/Franklin.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Agency";
+  src: local("Agency"), url(./fonts/Agency.ttf) format("truetype");
+}
+
+.App {
+  flex: 1;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Container-animation {
+  animation-name: background-dark;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes background-dark {
+  0% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.rank-image {
+  opacity: 0%;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  height: 260px; /* 130 * 3 */
+  width: 640px; /* 320 * 3 */
+}
+
+.rank-image-anim {
+  animation-name: rank-img-up;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes rank-img-up {
+  0% {
+    opacity: 0%;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+
+.countup-num {
+  opacity: 0%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 60px;
+  color: white;
+}
+
+.elo-countup-anim {
+  animation-name: elo-up;
+  animation-duration: 0.5s;
+  animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes elo-up {
+  0% {
+    transform: translateY(100px);
+    opacity: 0%;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
+
+.diff-num {
+  opacity: 0%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 30px;
+}
+.diff-num-neg {
+  opacity: 0%;
+  color: #b92727;
+  text-shadow: 0 0 15px #b92727, 0 0 10px #b92727;
+}
+
+.diff-num-pos {
+  opacity: 0%;
+  color: #258901;
+  text-shadow: 0 0 15px #258901, 0 0 10px #258901;
+}
+
+.diff-num-anim {
+  animation-name: diff-up;
+  animation-duration: 2s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes diff-up {
+  0% {
+    transform: translateY(100px);
+    opacity: 0%;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+  100% {
+    transform: translateY(-50px);
+  }
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 30px;
+  opacity: 0%;
+  color: white;
+  font-size: 50px;
+}
+.stats-num {
+  font-family: "Agency";
+  font-size: 37.17px;
+}
+
+.stats-word {
+  font-family: "Agency";
+  font-size: 30px;
+  color: #d2d1d3;
+}
+.kills {
+  display: inline-block;
+}
+
+.deaths {
+  display: inline-block;
+}
+.kd {
+  display: inline-block;
+}
+.mvp {
+  display: inline-block;
+}
+
+.stats-anim {
+  animation-name: stats-up;
+  animation-duration: 0.5s;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes stats-up {
+  0% {
+    transform: translateY(100px);
+    opacity: 0%;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
