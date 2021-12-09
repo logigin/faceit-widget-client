@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { io } from "socket.io-client"
+import CountUp from "react-countup"
+
+import "./App.css"
 import rank1 from "./img/1.png"
 import rank2 from "./img/2.png"
 import rank3 from "./img/3.png"
@@ -10,40 +13,39 @@ import rank7 from "./img/7.png"
 import rank8 from "./img/8.png"
 import rank9 from "./img/9.png"
 import rank10 from "./img/10.png"
-import CountUp from "react-countup"
-import "./App.css"
 
 const axios = require("axios").default
 axios.defaults.headers.common["Authorization"] =
   "Bearer d406c9ac-c9d1-4a36-810f-593bf76a4a36"
-// const pid = "47836e8c-10bf-40d8-92e1-656c3c440e11" // 1-4da66009-d068-4518-89f0-f9fdcfd29100 match
+const pid = "47836e8c-10bf-40d8-92e1-656c3c440e11" // 1-4da66009-d068-4518-89f0-f9fdcfd29100 match
 
 const socket = io("https://faceit-widget-server.herokuapp.com/")
 
 socket.on("connect", () => {
-  console.log("Connect to the server.")
+  console.log("Connected to the server.")
 })
 
 socket.on("match_status_finished", () => {
-  document.getElementById("main-container").click()
+  document.getElementById("rank-image").click()
   console.log("started animation from event")
 })
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min
+}
+
 const App = () => {
-  const [currentElo, setCurrentElo] = useState(1100)
-  const [prevElo, setPrevElo] = useState(0)
-  const [prevEloForCount, setPrevEloForCount] = useState(1100)
+  const [newElo, setNewElo] = useState(1100)
+  const [currentElo, setCurrentElo] = useState(0)
+
+  const [diff, setDiff] = useState(0)
   const [kills, setKills] = useState("")
   const [deaths, setDeaths] = useState("")
   const [kd, setKd] = useState("")
   const [mvp, setMvp] = useState("")
   const [rankImage, setRankImage] = useState(rank1)
-  const [diff, setDiff] = useState(0)
-  useEffect(() => {
-    setPrevElo(currentElo)
-  }, [currentElo])
 
-  const startAnimation = async () => {
+  async function startAnimation() {
     // const response = await axios.get(
     //   `https://open.faceit.com/data/v4/players/${pid}`
     // )
@@ -51,51 +53,41 @@ const App = () => {
       data: {
         games: {
           csgo: {
-            faceit_elo: 1120,
+            faceit_elo: getRandomArbitrary(1000, 1200),
           },
         },
       },
     }
-    setPrevElo(currentElo)
-    var newElo = parseInt(response.data.games.csgo.faceit_elo)
-    setCurrentElo(newElo)
-    let difference = newElo - prevElo
+
+    const newElo = parseInt(response.data.games.csgo.faceit_elo)
+    setNewElo(newElo)
+
+    const difference = newElo - currentElo
     setDiff(difference)
-    console.log(
-      `Prev: ${prevElo}, Current: ${newElo}, Difference: ${difference}`
-    ) // image
 
     if (newElo > 1 && newElo < 801) {
-      console.log("im in rank1")
       setRankImage(rank1)
     } else if (newElo > 800 && newElo < 951) {
-      console.log("im in rank2")
       setRankImage(rank2)
     } else if (newElo > 950 && newElo < 1101) {
-      console.log("im in rank3")
       setRankImage(rank3)
     } else if (newElo > 1100 && newElo < 1251) {
-      console.log("im in rank4")
       setRankImage(rank4)
     } else if (newElo > 1250 && newElo < 1401) {
-      console.log("im in rank5")
       setRankImage(rank5)
     } else if (newElo > 1400 && newElo < 1551) {
-      console.log("im in rank6")
       setRankImage(rank6)
     } else if (newElo > 1550 && newElo < 1701) {
-      console.log("im in rank7")
       setRankImage(rank7)
     } else if (newElo > 1700 && newElo < 1851) {
-      console.log("im in rank8")
       setRankImage(rank8)
     } else if (newElo > 1850 && newElo < 2001) {
-      console.log("im in rank9")
       setRankImage(rank9)
     } else if (newElo > 2000) {
-      console.log("im in rank10")
       setRankImage(rank10)
-    } // kills death kd mvp
+    }
+
+    // kills death kd mvp
     // last match id
     // const mRes = await axios.get(
     //   `https://open.faceit.com/data/v4/players/${pid}/history?game=csgo&offset=0&limit=1`
@@ -126,18 +118,21 @@ const App = () => {
     setKills(25)
     setDeaths(12)
     setKd(1.5)
-    setMvp(5) //-------- Animations start --------
-    // main
+    setMvp(5)
 
+    //-------- Animations start --------
+    // main
     document
       .getElementById("main-container")
-      .classList.add("Container-animation") // image
+      .classList.add("Container-animation")
 
-    document.getElementById("rank-image").classList.add("rank-image-anim") // countup
+    // image
+    document.getElementById("rank-image").classList.add("rank-image-anim")
 
+    // countup
     document.getElementById("countup-num")
       ? document.getElementById("countup-num").classList.add("elo-countup-anim")
-      : console.log("") // countup
+      : console.log("")
 
     document.getElementById("countup-num")
       ? document.getElementById("countup-num").click()
@@ -146,9 +141,10 @@ const App = () => {
     // diff
     document
       .getElementById("diff")
-      .classList.add(difference > 0 ? "diff-num-pos" : "diff-num-neg")
-    document.getElementById("diff").classList.add("diff-num-anim") // stats
+      .classList.add(difference < 0 ? "diff-num-neg" : "diff-num-pos")
+    document.getElementById("diff").classList.add("diff-num-anim")
 
+    // stats
     document.getElementById("stats").classList.add("stats-anim") // -------------------------------
     //-------- Animations end --------
 
@@ -156,38 +152,43 @@ const App = () => {
       // main
       document
         .getElementById("main-container")
-        .classList.remove("Container-animation") // image
+        .classList.remove("Container-animation")
 
-      document.getElementById("rank-image").classList.remove("rank-image-anim") // countup
+      // image
+      document.getElementById("rank-image").classList.remove("rank-image-anim")
 
+      // countup
       document.getElementById("countup-num")
         ? document
             .getElementById("countup-num")
             .classList.remove("elo-countup-anim")
-        : console.log("") // diff
+        : console.log("")
 
+      // diff
       document
         .getElementById("diff")
-        .classList.remove(difference > 0 ? "diff-num-pos" : "diff-num-neg")
-      document.getElementById("diff").classList.remove("diff-num-anim") //stats
+        .classList.remove(difference < 0 ? "diff-num-neg" : "diff-num-pos")
+      document.getElementById("diff").classList.remove("diff-num-anim")
 
+      //stats
       document.getElementById("stats").classList.remove("stats-anim")
-      setPrevEloForCount(newElo)
+      setCurrentElo(newElo)
     }, 10000) // -------------------------------
   }
 
   return (
     <>
-      <div id="main-container" className="App" onClick={startAnimation}>
+      <div id="main-container" className="App">
         <img
           id="rank-image"
           className="rank-image"
           src={rankImage}
           alt="rank"
+          onClick={startAnimation}
         />
         <CountUp
-          start={prevEloForCount}
-          end={currentElo}
+          start={currentElo}
+          end={newElo}
           duration={1}
           delay={4.5}
           redraw={true}
@@ -202,7 +203,7 @@ const App = () => {
 
         <div>
           <p id="diff" className="diff-num">
-            {diff > 0 ? `+${diff} ELO` : `-${diff} ELO`}
+            {diff < 0 ? `${diff} ELO` : `+${diff} ELO`}
           </p>
         </div>
 
@@ -226,14 +227,6 @@ const App = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={() => {
-          socket.emit("match_status_finished")
-          console.log("sent event")
-        }}
-      >
-        send event
-      </button>
     </>
   )
 }
