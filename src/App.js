@@ -189,8 +189,8 @@ const App = () => {
         <CountUp
           start={currentElo}
           end={newElo}
-          duration={1}
-          delay={4.5}
+          duration={1.5}
+          delay={5}
           redraw={true}
           suffix=" ELO"
         >

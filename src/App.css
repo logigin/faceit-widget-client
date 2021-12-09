@@ -34,7 +34,7 @@ body {
     background-color: transparent;
   }
   100% {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -42,7 +42,7 @@ body {
   opacity: 0;
   display: block;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 100px;
   height: 260px; /* 130 * 3 */
   width: 640px; /* 320 * 3 */
 }
@@ -68,7 +68,7 @@ body {
 .countup-num {
   opacity: 0;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 60px;
+  font-size: 80px;
   color: white;
 }
 
@@ -93,7 +93,7 @@ body {
 .diff-num {
   opacity: 0;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 30px;
+  font-size: 40px;
 }
 .diff-num-neg {
   opacity: 0;
@@ -110,7 +110,7 @@ body {
 .diff-num-anim {
   animation-name: diff-up;
   animation-duration: 2s;
-  animation-delay: 3s;
+  animation-delay: 3.5s;
   animation-fill-mode: forwards;
 }
 
@@ -131,23 +131,24 @@ body {
 .stats {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-left: 150px;
-  margin-right: 150px;
+  justify-content: center;
   margin-top: 30px;
   opacity: 0;
   color: white;
-  font-size: 50px;
 }
 .stats-num {
   font-family: "Agency";
-  font-size: 37.17px;
+  font-size: 45px;
+  margin-left: 70px;
+  margin-right: 70px;
 }
 
 .stats-word {
   font-family: "Agency";
-  font-size: 30px;
+  font-size: 50px;
   color: #d2d1d3;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 .kills {
   display: inline-block;
@@ -155,9 +156,11 @@ body {
 
 .deaths {
   display: inline-block;
+  margin-right: 60px;
 }
 .kd {
   display: inline-block;
+  margin-left: 60px;
 }
 .mvp {
   display: inline-block;
@@ -166,7 +169,7 @@ body {
 .stats-anim {
   animation-name: stats-up;
   animation-duration: 0.5s;
-  animation-delay: 4s;
+  animation-delay: 4.5s;
   animation-fill-mode: forwards;
 }
 
@@ -176,7 +179,7 @@ body {
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(-50px);
     opacity: 1;
   }
 }
