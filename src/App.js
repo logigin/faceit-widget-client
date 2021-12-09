@@ -190,7 +190,7 @@ const App = () => {
           start={currentElo}
           end={newElo}
           duration={1.5}
-          delay={5}
+          delay={3.5}
           redraw={true}
           suffix=" ELO"
         >
