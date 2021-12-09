@@ -141,6 +141,7 @@ body {
   font-size: 45px;
   margin-left: 70px;
   margin-right: 70px;
+  margin-bottom: 10px;
 }
 
 .stats-word {
@@ -149,6 +150,7 @@ body {
   color: #d2d1d3;
   margin-left: 80px;
   margin-right: 80px;
+  margin-top: 10px;
 }
 .kills {
   display: inline-block;

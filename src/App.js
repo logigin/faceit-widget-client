@@ -173,7 +173,7 @@ const App = () => {
       //stats
       document.getElementById("stats").classList.remove("stats-anim")
       setCurrentElo(newElo)
-    }, 10000) // -------------------------------
+    }, 100000) // -------------------------------
   }
 
   return (
