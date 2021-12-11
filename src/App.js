@@ -46,18 +46,18 @@ const App = () => {
   const [rankImage, setRankImage] = useState(rank1)
 
   async function startAnimation() {
-    // const response = await axios.get(
-    //   `https://open.faceit.com/data/v4/players/${pid}`
-    // )
-    const response = {
-      data: {
-        games: {
-          csgo: {
-            faceit_elo: getRandomArbitrary(1000, 1200),
-          },
-        },
-      },
-    }
+    const response = await axios.get(
+      `https://open.faceit.com/data/v4/players/${pid}`
+    )
+    // const response = {
+    //   data: {
+    //     games: {
+    //       csgo: {
+    //         faceit_elo: getRandomArbitrary(1000, 1200),
+    //       },
+    //     },
+    //   },
+    // }
 
     const newElo = parseInt(response.data.games.csgo.faceit_elo)
     setNewElo(newElo)
@@ -89,36 +89,36 @@ const App = () => {
 
     // kills death kd mvp
     // last match id
-    // const mRes = await axios.get(
-    //   `https://open.faceit.com/data/v4/players/${pid}/history?game=csgo&offset=0&limit=1`
-    // )
-    // const matchId = mRes.data.items[0].match_id
-    // // stats
-    // const sRes = await axios.get(
-    //   `https://open.faceit.com/data/v4/matches/${matchId}/stats`
-    // )
-    // const team1 = sRes.data.rounds[0].teams[0].players.find(
-    //   (player) => player.player_id === pid
-    // )
-    // const team2 = sRes.data.rounds[0].teams[1].players.find(
-    //   (player) => player.player_id === pid
-    // )
-    // if (team1) {
-    //   setKills(team1.player_stats.Kills)
-    //   setDeaths(team1.player_stats.Deaths)
-    //   setKd(team1.player_stats["K/D Ratio"])
-    //   setMvp(team1.player_stats.MVPs)
-    // } else if (team2) {
-    //   setKills(team2.player_stats.Kills)
-    //   setDeaths(team2.player_stats.Deaths)
-    //   setKd(team2.player_stats["K/D Ratio"])
-    //   setMvp(team2.player_stats.MVPs)
-    // }
+    const mRes = await axios.get(
+      `https://open.faceit.com/data/v4/players/${pid}/history?game=csgo&offset=0&limit=1`
+    )
+    const matchId = mRes.data.items[0].match_id
+    // stats
+    const sRes = await axios.get(
+      `https://open.faceit.com/data/v4/matches/${matchId}/stats`
+    )
+    const team1 = sRes.data.rounds[0].teams[0].players.find(
+      (player) => player.player_id === pid
+    )
+    const team2 = sRes.data.rounds[0].teams[1].players.find(
+      (player) => player.player_id === pid
+    )
+    if (team1) {
+      setKills(team1.player_stats.Kills)
+      setDeaths(team1.player_stats.Deaths)
+      setKd(team1.player_stats["K/D Ratio"])
+      setMvp(team1.player_stats.MVPs)
+    } else if (team2) {
+      setKills(team2.player_stats.Kills)
+      setDeaths(team2.player_stats.Deaths)
+      setKd(team2.player_stats["K/D Ratio"])
+      setMvp(team2.player_stats.MVPs)
+    }
 
-    setKills(25)
-    setDeaths(12)
-    setKd(1.5)
-    setMvp(5)
+    // setKills(25)
+    // setDeaths(12)
+    // setKd(1.5)
+    // setMvp(5)
 
     //-------- Animations start --------
     // main
